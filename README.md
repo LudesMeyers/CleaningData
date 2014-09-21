@@ -1,31 +1,42 @@
 run_analysis <- function() {
+
   #Load R packages needed to run scripts
   library(plyr)
   library(dplyr)
   
-  #Load data into R files
+  #Load text data into R files
+  #These text data are used to identify subject and activity measurements
+  #and for generating variable names
   featuresTbl <- read.table(file("features.txt", open = "rt"), colClasses = "character")
   testSubjects <- read.table(file("test/subject_test.txt", open="rt"))
   testActivity <- read.table(file("test/y_test.txt", open="rt"))
   trainSubjects <- read.table(file("train/subject_train.txt", open="rt"))
   trainActivity <- read.table(file("train/y_train.txt", open="rt"))
 
-  #Edit the text variables
+  #Edit the text variables from the "features.txt" file
+  #to make them more readable and manageable
   featuresTbl$V2 <- sapply(featuresTbl$V2, function(x) {gsub("\\(", "", x)})
   featuresTbl$V2 <- sapply(featuresTbl$V2, function(x) {gsub("\\)", "", x)})
   featuresTbl$V2 <- sapply(featuresTbl$V2, function(x) {gsub("-", "", x)})
   featuresTbl$V2 <- sapply(featuresTbl$V2, function(x) {gsub(",", "", x)})
   featuresTbl$V2 <- sapply(featuresTbl$V2, tolower)
 
-  #Generate data frames with variable names from the "features.txt" file
+  #Generate data frames containing data measurements 
+  #variable names for the measurements are from the "features.txt" file
   Xtest <- read.table(file("test/X_test.txt", open = "rt"), col.names = featuresTbl$V2)
   Xtrain <- read.table(file("train/X_train.txt", open = "rt"), col.names = featuresTbl$V2)
 
-  #Construct the complete data set from the separate file data
+  #Construct the complete data set
+  
+  #Add activity and subject variables to the companion data set
+  #to identify the activity and subject that corresponds with 
+  #data measurements in the record(row) 
   Xtest$ActivityLabel <- testActivity$V1
   Xtest$Subjects <- testSubjects$V1
   Xtrain$ActivityLabel <- trainActivity$V1
   Xtrain$Subjects <- trainSubjects$V1
+  
+  #Combine the training and test data sets
   completedataset <- rbind(Xtest, Xtrain)
 
   #Replace activity label numbers with activity names
