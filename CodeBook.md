@@ -24,7 +24,7 @@ Measurements were made while subjects performed each of six activities:
 
 Numeric labels given in the y-train.txt and x_train.txt were converted to 
 descriptive labels according to the coding scheme from "activity_labels.txt" file and 
-described above (e.g. 1 = "walking).
+described above (e.g. 1 = "walking").
 
 The "finaldataset", which is the complete tidy data set, consists of a 
 record(row)that contains the values for the mean and standard deviation for each 
