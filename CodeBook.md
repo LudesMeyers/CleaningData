@@ -1,6 +1,5 @@
-Code book for the run_analysis script in the README.md file.
+Code book for the run_analysis.R script in the README.md file.
 
-Variables, data transformations,
 
 The data used for this data set are measurments of signals from the accelerometer (Acc) 
 and gyroscope (Gyro) sensors of Samsung Smartphones worn by individual subjects.  
