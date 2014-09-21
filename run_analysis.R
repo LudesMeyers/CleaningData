@@ -1,3 +1,8 @@
+#Set your working dir to the "UCI HAR Dataset" folder.
+#Open this file with a R interface (i.e. R studio)
+#Source this file and then type "run_analysis()" in command line.
+#The "summarytable.txt" file will be located in the working dir.
+
 run_analysis <- function() {
   
   #Load R packages needed to run scripts
