@@ -1,3 +1,5 @@
+It is best to read this in github RAW format
+
 run_analysis <- function() {
 
   #Load R packages needed to run scripts
